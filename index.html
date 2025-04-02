@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correção Prova Paulista - 1º Bimestre</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #e2e8f0;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #4f46e5;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-card {
+            scroll-margin-top: 80px;
+        }
+
+        .active-question {
+            border-left: 4px solid #4f46e5;
+        }
+
+        .answer-btn.correct {
+            background-color: #dcfce7;
+            border-color: #22c55e;
+            color: #166534;
+        }
+
+        .answer-btn.incorrect {
+            background-color: #fee2e2;
+            border-color: #ef4444;
+            color: #991b1b;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans">
+    <!-- Progress bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="mb-10 text-center">
+            <div class="flex justify-center items-center mb-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800 mb-1">Correção Prova Paulista</h1>
+                    <h2 class="text-xl text-gray-600">1º Bimestre - Matemática</h2>
+                    <p class="text-sm text-gray-500 mt-2">Probabilidade, Análise Combinatória!</p>
+                </div>
+            </div>
+            <div class="w-full bg-blue-600 h-1 mt-4 rounded-full"></div>
+        </header>
+
+        <!-- Navigation -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-8 sticky top-0 z-50">
+            <h3 class="font-medium text-gray-700 mb-2">Navegação Rápida</h3>
+            <div class="flex flex-wrap gap-2" id="questionNav">
+                <!-- Navigation buttons will be added by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Questions Container -->
+        <div id="questionsContainer">
+            <!-- Questão 01 - Versão Corrigida -->
+            <div id="q01" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+                <div class="flex items-center mb-4">
+                    <span
+                        class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">01</span>
+                    <h2 class="text-xl font-semibold text-gray-800">Probabilidade em Grupo Musical</h2>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <p class="text-gray-700 mb-2">Dentre um grupo de 10 pessoas (6 gostam apenas de dançar, 3 apenas de
+                        cantar e 1 nenhuma das opções), serão escolhidas 3 pessoas. Qual a probabilidade de selecionar 1
+                        cantor e 2 dançarinos?</p>
+
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{14}{15}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{9}{50}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{21}{25}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{3}{14}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="true">\(\frac{3}{8}\)</button>
+                    </div>
+                </div>
+
+                <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                        <span class="material-icons mr-2">lightbulb</span>
+                        Resolução Detalhada
+                    </h3>
+
+                    <!-- Passo 1: Diagrama do Grupo -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">1. Distribuição das 10 pessoas</h4>
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div class="bg-green-50 p-3 rounded-md border border-green-200">
+                                <p class="font-bold text-green-700">Dançarinos</p>
+                                <p class="font-mono text-lg">6</p>
+                            </div>
+                            <div class="bg-blue-50 p-3 rounded-md border border-blue-200">
+                                <p class="font-bold text-blue-700">Cantores</p>
+                                <p class="font-mono text-lg">3</p>
+                            </div>
+                            <div class="bg-gray-50 p-3 rounded-md border border-gray-200">
+                                <p class="font-bold text-gray-700">Outros</p>
+                                <p class="font-mono text-lg">1</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Passo 2: Cálculo Combinatório -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">2. Combinações Possíveis</h4>
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div class="bg-white p-4 rounded-md shadow-sm">
+                                <p class="text-center font-bold">Total</p>
+                                <p class="text-center font-mono text-xl">C(10,3) = 120</p>
+                                <p class="text-center text-sm text-gray-600">Todas as combinações de 3 pessoas</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-md shadow-sm">
+                                <p class="text-center font-bold">Favoráveis</p>
+                                <p class="text-center font-mono text-xl">C(3,1) × C(6,2) = 45</p>
+                                <p class="text-center text-sm text-gray-600">1 cantor e 2 dançarinos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Passo 3: Probabilidade -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">3. Cálculo da Probabilidade</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center text-lg">\[ \frac{\text{Casos favoráveis}}{\text{Casos totais}} =
+                                \frac{45}{120} \]</p>
+                            <p class="text-center font-mono text-xl mt-2">\[ \frac{3}{8} \ \text{(simplificado por 15)}
+                                \]</p>
+                        </div>
+                    </div>
+
+                    <!-- Resposta Final -->
+                    <div
+                        class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400 flex items-center justify-center">
+                        <span class="material-icons mr-2 text-green-600">check_circle</span>
+                        <span class="font-bold text-green-800">Probabilidade correta: <span
+                                class="font-mono text-xl">\(\frac{3}{8}\)</span></span>
+                    </div>
+                </div>
+
+                <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                    <span class="material-icons mr-1">visibility</span>
+                    Mostrar Resolução Completa
+                </button>
+            </div>
+            <!-- Questão 2 -->
+            <div id="q2" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+                <div class="flex items-center mb-4">
+                    <span
+                        class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">2</span>
+                    <h2 class="text-xl font-semibold text-gray-800">Probabilidade de Bolsa de Estudos</h2>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <p class="text-gray-700 mb-2">Uma faculdade fez um levantamento sobre candidatos inscritos e
+                        matriculados:</p>
+
+                    <div class="overflow-x-auto my-4">
+                        <table class="min-w-full bg-white border border-gray-200">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="py-2 px-4 border"></th>
+                                    <th class="py-2 px-4 border">A</th>
+                                    <th class="py-2 px-4 border">B</th>
+                                    <th class="py-2 px-4 border">C</th>
+                                    <th class="py-2 px-4 border">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-2 px-4 border">Inscritos</td>
+                                    <td class="py-2 px-4 border">650</td>
+                                    <td class="py-2 px-4 border">850</td>
+                                    <td class="py-2 px-4 border">100</td>
+                                    <td class="py-2 px-4 border">1600</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border">Matriculados</td>
+                                    <td class="py-2 px-4 border">245</td>
+                                    <td class="py-2 px-4 border">150</td>
+                                    <td class="py-2 px-4 border">25</td>
+                                    <td class="py-2 px-4 border">420</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="text-gray-700 mb-4">A bolsa de estudos é sorteada entre alunos matriculados cuja família
+                        não resida na cidade da faculdade (categorias B e C). Qual a probabilidade de o sorteado ser da
+                        categoria C (outro estado)?</p>
+
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">11%</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">60%</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">6%</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="true">14%</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">26%</button>
+                    </div>
+                </div>
+
+                <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                        <span class="material-icons mr-2">lightbulb</span>
+                        Resolução Comentada
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-3 rounded-md shadow-sm">
+                            <p class="text-gray-700 mb-1 text-sm">Alunos elegíveis (B + C):</p>
+                            <p class="text-center font-mono text-lg font-bold">150 + 25 = 175</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-md shadow-sm">
+                            <p class="text-gray-700 mb-1 text-sm">Alunos da categoria C:</p>
+                            <p class="text-center font-mono text-lg font-bold">25</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-md shadow-sm border-l-4 border-blue-500">
+                        <p class="text-gray-700 mb-1">Cálculo da probabilidade:</p>
+                        <p class="text-center font-mono text-xl">\[ P = \frac{25}{175} \approx 0,1429 \approx 14\% \]
+                        </p>
+                    </div>
+                </div>
+
+                <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                    <span class="material-icons mr-1">visibility</span>
+                    Mostrar Resolução
+                </button>
+            </div>
+            <!-- Questão 3 -->
+            <div id="q3" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+                <div class="flex items-center mb-4">
+                    <span
+                        class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">3</span>
+                    <h2 class="text-xl font-semibold text-gray-800">Probabilidade com Três Lançamentos de Moeda</h2>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <p class="text-gray-700 mb-2">(SARESP 2016) Uma moeda honesta é lançada sucessivamente três vezes. A
+                        probabilidade de sair "CARA" nessas três vezes é:</p>
+
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{1}{2}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{1}{4}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{1}{3}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="true">\(\frac{1}{8}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{1}{6}\)</button>
+                    </div>
+                </div>
+
+                <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                        <span class="material-icons mr-2">lightbulb</span>
+                        Resolução Detalhada
+                    </h3>
+
+                    <!-- Passo 1: Probabilidade em um único lançamento -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">1. Probabilidade em um Lançamento</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center font-mono text-lg">\[ P(\text{Cara}) = \frac{1}{2} \]</p>
+                            <p class="text-center text-gray-600 mt-1">Moeda honesta tem 50% de chance para Cara e 50%
+                                para Coroa</p>
+                        </div>
+                    </div>
+
+                    <!-- Passo 2: Eventos Independentes -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">2. Eventos Independentes</h4>
+                        <p class="text-gray-700">Cada lançamento é independente. Para três caras consecutivas:</p>
+                        <div class="bg-white p-4 rounded-md shadow-sm mt-2">
+                            <p class="text-center font-mono text-lg">\[ P(\text{3 Caras}) = P(\text{Cara}) \times
+                                P(\text{Cara}) \times P(\text{Cara}) \]</p>
+                        </div>
+                    </div>
+
+                    <!-- Passo 3: Cálculo Final -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">3. Cálculo da Probabilidade</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center font-mono text-xl">\[ \left(\frac{1}{2}\right)^3 = \frac{1}{8} \]</p>
+                        </div>
+                    </div>
+
+                    <!-- Passo 4: Espaço Amostral -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">4. Todas as Possibilidades</h4>
+                        <p class="text-gray-700">Os 8 resultados possíveis em três lançamentos:</p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-2">
+                            <div class="bg-white p-2 rounded-md text-center border text-sm">CCC</div>
+                            <div class="bg-white p-2 rounded-md text-center border text-sm">CCK</div>
+                            <div class="bg-white p-2 rounded-md text-center border text-sm">CKC</div>
+                            <div class="bg-white p-2 rounded-md text-center border text-sm">CKK</div>
+                            <div class="bg-white p-2 rounded-md text-center border text-sm">KCC</div>
+                            <div class="bg-white p-2 rounded-md text-center border text-sm">KCK</div>
+                            <div class="bg-white p-2 rounded-md text-center border text-sm">KKC</div>
+                            <div class="bg-white p-2 rounded-md text-center border text-sm">KKK</div>
+                        </div>
+                        <p class="text-gray-700 mt-2 text-sm">Apenas <strong>1</strong> em <strong>8</strong> resultados
+                            é CCC (três caras)</p>
+                    </div>
+
+                    <!-- Resposta Final -->
+                    <div
+                        class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400 flex items-center justify-center">
+                        <span class="material-icons mr-2 text-green-600">check_circle</span>
+                        <span class="font-bold text-green-800">Probabilidade: <span
+                                class="font-mono text-xl">\(\frac{1}{8}\)</span></span>
+                    </div>
+                </div>
+
+                <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                    <span class="material-icons mr-1">visibility</span>
+                    Mostrar Resolução Completa
+                </button>
+            </div>
+            <!-- Questão 4 -->
+            <div id="q4" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+                <div class="flex items-center mb-4">
+                    <span
+                        class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">4</span>
+                    <h2 class="text-xl font-semibold text-gray-800">Probabilidade com Dodecaedro</h2>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <p class="text-gray-700 mb-2">Um dado em formato de dodecaedro (12 faces) numerado de 1 a 12 é
+                        lançado. Qual a probabilidade do evento complementar a "obter um número primo"?</p>
+
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{1}{2}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{5}{12}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="true">\(\frac{7}{12}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{5}{7}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{0}{7}\)</button>
+                    </div>
+                </div>
+
+                <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                        <span class="material-icons mr-2">lightbulb</span>
+                        Resolução Passo a Passo
+                    </h3>
+
+                    <div class="mb-4">
+                        <h4 class="font-medium text-gray-700 mb-2">1. Identificar Números Primos</h4>
+                        <p class="text-gray-700 mb-2">Entre 1 e 12, os números primos são:</p>
+                        <div class="bg-white p-3 rounded-md inline-block">
+                            <span class="font-mono">2, 3, 5, 7, 11</span>
+                        </div>
+                        <p class="text-gray-700 mt-2">Totalizando <strong>5 números primos</strong>.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-3 rounded-md shadow-sm">
+                            <h5 class="font-medium text-gray-700 mb-2 text-center">Probabilidade de primo</h5>
+                            <p class="text-center font-mono text-lg">\[ P(\text{primo}) = \frac{5}{12} \]</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-md shadow-sm">
+                            <h5 class="font-medium text-gray-700 mb-2 text-center">Evento complementar</h5>
+                            <p class="text-center font-mono text-lg">\[ 1 - P(\text{primo}) = 1 - \frac{5}{12} \]</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-md shadow-sm border-l-4 border-blue-500">
+                        <p class="text-center font-mono text-xl">\[ = \frac{12}{12} - \frac{5}{12} = \frac{7}{12} \]</p>
+                    </div>
+
+                    <div class="mt-4 p-3 bg-purple-50 rounded-md border-l-4 border-purple-400">
+                        <p class="text-purple-800 flex items-start">
+                            <span class="material-icons mr-2 mt-1">tips_and_updates</span>
+                            <span><strong>Dica:</strong> O evento complementar inclui todos os números não-primos (1, 4,
+                                6, 8, 9, 10, 12), que somam 7 elementos.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                    <span class="material-icons mr-1">visibility</span>
+                    Mostrar Resolução
+                </button>
+            </div>
+            <!-- Questão 5 -->
+            <div id="q5" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+                <div class="flex items-center mb-4">
+                    <span
+                        class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">5</span>
+                    <h2 class="text-xl font-semibold text-gray-800">Probabilidade com Triângulos</h2>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <p class="text-gray-700 mb-2">Paula apontou para um quadrinho em uma matriz 10x10 (100 quadrinhos).
+                        Se 12 quadrinhos contêm triângulos, qual a probabilidade de ter apontado para um triângulo?</p>
+
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{2}{25}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{21}{50}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="true">\(\frac{3}{25}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{9}{50}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{7}{25}\)</button>
+                    </div>
+                </div>
+
+                <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                        <span class="material-icons mr-2">lightbulb</span>
+                        Resolução Comentada
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-3 rounded-md shadow-sm">
+                            <p class="text-gray-700 mb-1 text-sm">Casos possíveis:</p>
+                            <p class="text-center font-mono text-lg font-bold">100</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-md shadow-sm">
+                            <p class="text-gray-700 mb-1 text-sm">Casos favoráveis:</p>
+                            <p class="text-center font-mono text-lg font-bold">12</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-md shadow-sm border-l-4 border-blue-500">
+                        <p class="text-gray-700 mb-1">Probabilidade:</p>
+                        <p class="text-center font-mono text-xl">\[ \frac{12}{100} = \frac{3}{25} \]</p>
+                    </div>
+                </div>
+
+                <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                    <span class="material-icons mr-1">visibility</span>
+                    Mostrar Resolução
+                </button>
+            </div>
+            <!-- Questão 6 -->
+            <div id="q6" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+                <div class="flex items-center mb-4">
+                    <span
+                        class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">6</span>
+                    <h2 class="text-xl font-semibold text-gray-800">Probabilidade na Sala</h2>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <p class="text-gray-700 mb-2">Na sala do Willian há 40 estudantes (24 meninas e 16 meninos). Qual a
+                        probabilidade de escolher aleatoriamente uma menina?</p>
+
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">24%</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">30%</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">10%</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">64%</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="true">60%</button>
+                    </div>
+                </div>
+
+                <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                        <span class="material-icons mr-2">lightbulb</span>
+                        Resolução Comentada
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-3 rounded-md shadow-sm">
+                            <p class="text-gray-700 mb-1 text-sm">Total de estudantes:</p>
+                            <p class="text-center font-mono text-lg font-bold">40</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-md shadow-sm">
+                            <p class="text-gray-700 mb-1 text-sm">Número de meninas:</p>
+                            <p class="text-center font-mono text-lg font-bold">24</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-md shadow-sm border-l-4 border-blue-500">
+                        <p class="text-gray-700 mb-1">Probabilidade:</p>
+                        <p class="text-center font-mono text-xl">\[ \frac{24}{40} = 0,6 = 60\% \]</p>
+                    </div>
+                </div>
+
+                <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                    <span class="material-icons mr-1">visibility</span>
+                    Mostrar Resolução
+                </button>
+            </div>
+        </div>
+
+        <!-- Questão 7-->
+        <div id="q7" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+            <div class="flex items-center mb-4">
+                <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">7</span>
+                <h2 class="text-xl font-semibold text-gray-800">Espaço Amostral com Letras</h2>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                <p class="text-gray-700 mb-2">Em uma caixa estão as 10 primeiras letras do alfabeto (A-J).
+                    Retiram-se 2 letras ao acaso para formar anagramas. Qual é o tamanho do espaço amostral?</p>
+
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">45</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="true">90</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">50</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">70</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">100</button>
+                </div>
+            </div>
+
+            <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                    <span class="material-icons mr-2">lightbulb</span>
+                    Resolução Comentada
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-white p-3 rounded-md shadow-sm">
+                        <p class="text-gray-700 mb-1 text-sm">Arranjo de 10 tomados 2 a 2:</p>
+                        <p class="text-center font-mono text-lg font-bold">10 × 9 = 90</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-md shadow-sm">
+                        <p class="text-gray-700 mb-1 text-sm">Combinação × Permutação:</p>
+                        <p class="text-center font-mono text-lg font-bold">C(10,2) × 2! = 45 × 2 = 90</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                <span class="material-icons mr-1">visibility</span>
+                Mostrar Resolução
+            </button>
+        </div>
+
+        <!-- Questão 8 -->
+        <div id="q8" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+            <div class="flex items-center mb-4">
+                <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">8</span>
+                <h2 class="text-xl font-semibold text-gray-800">Anagramas com Vogais</h2>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                <p class="text-gray-700 mb-2">Considerando todos os anagramas da palavra "FAZER", qual a
+                    probabilidade de um anagrama escolhido ao acaso começar e terminar com vogal?</p>
+
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">\(\frac{1}{20}\)</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="true">\(\frac{1}{10}\)</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">\(\frac{1}{5}\)</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">\(\frac{1}{2}\)</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">\(\frac{1}{6}\)</button>
+                </div>
+            </div>
+
+            <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                    <span class="material-icons mr-2">lightbulb</span>
+                    Resolução Passo a Passo
+                </h3>
+
+                <div class="mb-4">
+                    <h4 class="font-medium text-gray-700 mb-2">1. Total de Anagramas</h4>
+                    <p class="text-gray-700">"FAZER" tem 5 letras distintas:</p>
+                    <div class="bg-white p-3 rounded-md inline-block mt-2">
+                        <p class="font-mono text-lg">\[ 5! = 120 \text{ anagramas} \]</p>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="font-medium text-gray-700 mb-2">2. Vogais Disponíveis</h4>
+                    <p class="text-gray-700">Vogais em "FAZER": A, E (2 vogais)</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div class="bg-white p-3 rounded-md shadow-sm">
+                        <h5 class="font-medium text-gray-700 mb-2 text-center">1ª Letra</h5>
+                        <p class="text-center font-mono">2 opções (A, E)</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-md shadow-sm">
+                        <h5 class="font-medium text-gray-700 mb-2 text-center">Última Letra</h5>
+                        <p class="text-center font-mono">1 opção (a vogal restante)</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-md shadow-sm">
+                        <h5 class="font-medium text-gray-700 mb-2 text-center">Meio (3 letras)</h5>
+                        <p class="text-center font-mono">\(3! = 6\) arranjos</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-md shadow-sm border-l-4 border-blue-500">
+                    <p class="text-center font-mono text-xl">\[ \frac{2 \times 1 \times 6}{120} = \frac{12}{120} =
+                        \frac{1}{10} \]</p>
+                </div>
+
+                <div class="mt-4 p-3 bg-green-50 rounded-md border-l-4 border-green-400">
+                    <p class="text-green-800 flex items-start">
+                        <span class="material-icons mr-2 mt-1">check_circle</span>
+                        <span><strong>Exemplo:</strong> Anagramas válidos incluem "AFEZR" e "EFAZR". Note que as
+                            vogais ocupam as extremidades.</span>
+                    </p>
+                </div>
+            </div>
+
+            <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                <span class="material-icons mr-1">visibility</span>
+                Mostrar Resolução
+            </button>
+        </div>
+
+        <!-- Questão 9 -->
+        <div id="q9" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+            <div class="flex items-center mb-4">
+                <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">9</span>
+                <h2 class="text-xl font-semibold text-gray-800">Combinação de Estudantes</h2>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                <p class="text-gray-700 mb-2">Um grupo tem 3 estudantes da 3ª Série A e 4 da 3ª Série B. Se 3
+                    integrantes são sorteados para um podcast, qual a probabilidade de serem 1 da Série A e 2 da
+                    Série B?</p>
+
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">\(\frac{10}{35}\)</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="true">\(\frac{18}{35}\)</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">\(\frac{15}{35}\)</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">\(\frac{21}{35}\)</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">\(\frac{12}{35}\)</button>
+                </div>
+            </div>
+
+            <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                    <span class="material-icons mr-2">lightbulb</span>
+                    Resolução Passo a Passo
+                </h3>
+
+                <div class="mb-4">
+                    <h4 class="font-medium text-gray-700 mb-2">1. Combinações Totais</h4>
+                    <p class="text-gray-700">Total de estudantes: 3 (Série A) + 4 (Série B) = 7</p>
+                    <div class="bg-white p-3 rounded-md inline-block mt-2">
+                        <p class="font-mono text-lg">\[ C(7,3) = \frac{7!}{3!4!} = 35 \]</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-white p-3 rounded-md shadow-sm">
+                        <h5 class="font-medium text-gray-700 mb-2 text-center">1 da Série A</h5>
+                        <p class="text-center font-mono">\[ C(3,1) = 3 \]</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-md shadow-sm">
+                        <h5 class="font-medium text-gray-700 mb-2 text-center">2 da Série B</h5>
+                        <p class="text-center font-mono">\[ C(4,2) = 6 \]</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-md shadow-sm border-l-4 border-blue-500 mb-3">
+                    <p class="text-center font-mono text-xl">\[ \frac{3 \times 6}{35} = \frac{18}{35} \]</p>
+                </div>
+
+                <div class="p-3 bg-yellow-50 rounded-md border-l-4 border-yellow-400">
+                    <p class="text-yellow-800 flex items-start">
+                        <span class="material-icons mr-2 mt-1">info</span>
+                        <span><strong>Dica:</strong> Note que usamos combinações (não arranjos) porque a ordem de
+                            seleção não importa neste contexto.</span>
+                    </p>
+                </div>
+            </div>
+
+            <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                <span class="material-icons mr-1">visibility</span>
+                Mostrar Resolução
+            </button>
+        </div>
+        <!-- Questão 10 -->
+        <div id="q10" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+            <div class="flex items-center mb-4">
+                <span
+                    class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">10</span>
+                <h2 class="text-xl font-semibold text-gray-800">Oficinas de Teatro e Música</h2>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                <p class="text-gray-700 mb-2">Uma ONG ofereceu oficinas para 40 crianças:
+                <ul class="list-disc pl-5 mt-2">
+                    <li>18 optaram por teatro</li>
+                    <li>12 optaram por música</li>
+                    <li>8 optaram por ambas</li>
+                </ul>
+                Qual a probabilidade de uma criança escolhida aleatoriamente ter optado por teatro ou música?
+                </p>
+
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">50%</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">30%</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">67,5%</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="true">55%</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">57,5%</button>
+                </div>
+            </div>
+
+            <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                    <span class="material-icons mr-2">lightbulb</span>
+                    Resolução Passo a Passo
+                </h3>
+
+                <div class="mb-4">
+                    <h4 class="font-medium text-gray-700 mb-2">1. Diagrama de Venn</h4>
+                    <div class="flex justify-center my-3">
+                        <div class="relative w-48 h-32">
+                            <div class="absolute w-24 h-24 rounded-full bg-red-100 border-2 border-red-300 left-0">
+                            </div>
+                            <div class="absolute w-24 h-24 rounded-full bg-blue-100 border-2 border-blue-300 right-0">
+                            </div>
+                            <div class="absolute top-8 left-6 text-sm font-medium">10</div>
+                            <div class="absolute top-8 right-6 text-sm font-medium">4</div>
+                            <div class="absolute top-8 left-16 text-sm font-medium">8</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-sm text-center">Teatro apenas: 10 | Ambos: 8 | Música apenas: 4</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-white p-3 rounded-md shadow-sm">
+                        <h5 class="font-medium text-gray-700 mb-2 text-center">Total Teatro ou Música</h5>
+                        <p class="text-center font-mono">10 (só teatro) + 8 (ambos) + 4 (só música) = 22</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-md shadow-sm">
+                        <h5 class="font-medium text-gray-700 mb-2 text-center">Probabilidade</h5>
+                        <p class="text-center font-mono">\[ \frac{22}{40} = 0,55 = 55\% \]</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-md shadow-sm border-l-4 border-blue-500">
+                    <p class="text-center font-mono text-xl">\[ P(T \cup M) = P(T) + P(M) - P(T \cap M) \]
+                        \[ = \frac{18}{40} + \frac{12}{40} - \frac{8}{40} = \frac{22}{40} \]</p>
+                </div>
+            </div>
+
+            <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                <span class="material-icons mr-1">visibility</span>
+                Mostrar Resolução
+            </button>
+        </div>
+
+        <!-- Questão 11 -->
+        <div id="q11" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+            <div class="flex items-center mb-4">
+                <span
+                    class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">11</span>
+                <h2 class="text-xl font-semibold text-gray-800">Senhas com 3 Dígitos</h2>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                <p class="text-gray-700 mb-2">Um sistema de segurança usa senhas de 3 dígitos formadas apenas por
+                    algarismos ímpares (1, 3, 5, 7, 9), podendo haver repetição. Quantas senhas diferentes são
+                    possíveis?</p>
+
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">25</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">215</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="true">125</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">15</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">35</button>
+                </div>
+            </div>
+
+            <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                    <span class="material-icons mr-2">lightbulb</span>
+                    Resolução Passo a Passo
+                </h3>
+
+                <div class="mb-4">
+                    <h4 class="font-medium text-gray-700 mb-2">Princípio Fundamental da Contagem</h4>
+                    <p class="text-gray-700">Para cada dígito da senha, temos 5 opções independentes:</p>
+                </div>
+
+                <div class="flex justify-center space-x-6 mb-4">
+                    <div class="text-center">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center mx-auto">1º
+                        </div>
+                        <p class="mt-1 font-mono">5 opções</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center mx-auto">2º
+                        </div>
+                        <p class="mt-1 font-mono">5 opções</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center mx-auto">3º
+                        </div>
+                        <p class="mt-1 font-mono">5 opções</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-md shadow-sm border-l-4 border-blue-500">
+                    <p class="text-center font-mono text-xl">\[ 5 \times 5 \times 5 = 5^3 = 125 \]</p>
+                </div>
+
+                <div class="mt-4 p-3 bg-green-50 rounded-md border-l-4 border-green-400">
+                    <p class="text-green-800 flex items-start">
+                        <span class="material-icons mr-2 mt-1">check_circle</span>
+                        <span><strong>Exemplo:</strong> 111, 135, 777, 913 são todas senhas válidas. A repetição é
+                            permitida.</span>
+                    </p>
+                </div>
+            </div>
+
+            <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                <span class="material-icons mr-1">visibility</span>
+                Mostrar Resolução
+            </button>
+        </div>
+
+        <!-- Questão 12 -->
+        <div id="q12" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+            <div class="flex items-center mb-4">
+                <span
+                    class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">12</span>
+                <h2 class="text-xl font-semibold text-gray-800">Probabilidade Condicional em um Escritório</h2>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                <p class="text-gray-700 mb-2">Em um escritório com 40 funcionários:</p>
+                <ul class="list-disc pl-5 space-y-1 mb-3">
+                    <li>20 funcionários usam paletó</li>
+                    <li>15 funcionários usam gravata</li>
+                    <li>5 funcionários usam <strong>ambos</strong> (paletó e gravata)</li>
+                </ul>
+                <p class="text-gray-700">Se um funcionário que <strong>usa paletó</strong> for escolhido ao acaso,
+                    qual a probabilidade de que ele também use gravata?</p>
+
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">\(\frac{2}{25}\)</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">\(\frac{1}{20}\)</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="true">\(\frac{1}{4}\)</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">\(\frac{2}{20}\)</button>
+                    <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                        data-correct="false">\(\frac{1}{5}\)</button>
+                </div>
+            </div>
+
+            <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                    <span class="material-icons mr-2">lightbulb</span>
+                    Resolução Comentada Passo a Passo
+                </h3>
+
+                <!-- Passo 1: Diagrama de Venn -->
+                <div class="mb-6">
+                    <h4 class="font-medium text-gray-700 mb-3">1. Diagrama de Venn</h4>
+                    <div class="flex justify-center my-3">
+                        <div class="relative w-56 h-40">
+                            <!-- Círculo Paletó -->
+                            <div class="absolute w-32 h-32 rounded-full bg-red-100 border-2 border-red-300 left-0">
+                            </div>
+                            <!-- Círculo Gravata -->
+                            <div class="absolute w-32 h-32 rounded-full bg-blue-100 border-2 border-blue-300 right-0">
+                            </div>
+                            <!-- Rótulos -->
+                            <div class="absolute top-4 left-4 text-sm font-medium">15</div>
+                            <div class="absolute top-4 right-4 text-sm font-medium">10</div>
+                            <div class="absolute top-16 left-24 text-sm font-medium bg-white px-2 rounded">5</div>
+                            <div class="absolute bottom-2 left-28 text-sm font-medium">10</div>
+                            <!-- Legenda -->
+                            <div class="absolute bottom-0 left-0 text-xs w-full text-center">
+                                <span class="text-red-600">● Paletó</span> |
+                                <span class="text-blue-600">● Gravata</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="list-disc pl-5 text-sm text-gray-600">
+                        <li>Interseção (ambos): 5 funcionários</li>
+                        <li>Apenas paletó: 20 - 5 = 15</li>
+                        <li>Apenas gravata: 15 - 5 = 10</li>
+                        <li>Nenhum dos dois: 40 - (15+5+10) = 10</li>
+                    </ul>
+                </div>
+
+                <!-- Passo 2: Fórmula -->
+                <div class="mb-6">
+                    <h4 class="font-medium text-gray-700 mb-3">2. Fórmula de Probabilidade Condicional</h4>
+                    <div class="bg-white p-4 rounded-md shadow-sm mb-3">
+                        <p class="text-center font-mono text-lg">\[ P(G|P) = \frac{P(G \cap P)}{P(P)} \]</p>
+                    </div>
+                    <p class="text-gray-700">Onde:
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li><strong>P(G|P)</strong>: Probabilidade de usar gravata <em>dado que</em> usa paletó</li>
+                        <li><strong>P(G∩P)</strong>: Probabilidade de usar ambos (5 funcionários)</li>
+                        <li><strong>P(P)</strong>: Probabilidade de usar paletó (20 funcionários)</li>
+                    </ul>
+                    </p>
+                </div>
+
+                <!-- Passo 3: Cálculo -->
+                <div class="mb-6">
+                    <h4 class="font-medium text-gray-700 mb-3">3. Substituição dos Valores</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-3 rounded-md shadow-sm">
+                            <p class="text-gray-700 text-center mb-1">Funcionários que usam ambos</p>
+                            <p class="text-center font-mono text-xl">5</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-md shadow-sm">
+                            <p class="text-gray-700 text-center mb-1">Total que usam paletó</p>
+                            <p class="text-center font-mono text-xl">20</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-md shadow-sm border-l-4 border-blue-500 mt-4">
+                        <p class="text-center font-mono text-xl">\[ \frac{5}{20} = \frac{1}{4} \]</p>
+                    </div>
+                </div>
+
+                <!-- Dica -->
+                <div class="p-3 bg-yellow-50 rounded-md border-l-4 border-yellow-400">
+                    <p class="text-yellow-800 flex items-start">
+                        <span class="material-icons mr-2 mt-1">info</span>
+                        <span><strong>Por que não 5/40?</strong> Porque o espaço amostral já está condicionado aos
+                            20 que usam paletó ("dentre os que usam paletó"). A probabilidade condicional reduz o
+                            universo de análise.</span>
+                    </p>
+                </div>
+
+                <!-- Resposta Final -->
+                <div class="mt-4 p-3 bg-green-50 rounded-md border-l-4 border-green-400">
+                    <p class="text-green-800 flex items-center justify-center">
+                        <span class="material-icons mr-2">check_circle</span>
+                        <span class="font-bold">Resposta Final: \(\boxed{\dfrac{1}{4}}\)</span>
+                    </p>
+                </div>
+            </div>
+
+            <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                <span class="material-icons mr-1">visibility</span>
+                Mostrar Resolução Completa
+            </button>
+        </div>
+        <!-- Questão 13 - Versão Corrigida Matematicamente -->
+        <div id="q13" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+            <div class="flex items-center mb-4">
+                <span
+                    class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">13</span>
+                <h2 class="text-xl font-semibold text-gray-800">Otimização de Semáforos para Ônibus</h2>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <p class="text-gray-700 mb-4">
+                        Para melhorar o fluxo de ônibus em uma avenida que tem dois semáforos, a prefeitura reduzirá o
+                        tempo em que cada sinal ficará vermelho, que atualmente é de 15 segundos a cada 60 segundos.
+                        Admita que o instante de chegada de um ônibus a cada semáforo é aleatório. O engenheiro de
+                        tráfego da prefeitura calculou a probabilidade de um ônibus encontrar cada um deles vermelho,
+                        obtendo \(\frac{15}{60}\). A partir daí, estabeleceu uma mesma redução na quantidade do tempo,
+                        em segundo, em que cada sinal ficará vermelho, de maneira que a probabilidade de um ônibus
+                        encontrar ambos os sinais vermelhos numa mesma viagem seja igual a \(\frac{4}{100}\),
+                        considerando os eventos independentes.
+                    </p>
+                    <p class="font-medium text-gray-800">Para isso, a redução do tempo em que o sinal ficará vermelho,
+                        em segundo, estabelecida pelo engenheiro foi de:</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">12,60</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">1,35</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="true">3,00</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">9,00</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">13,80</button>
+                    </div>
+                </div>
+
+                <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                        <span class="material-icons mr-2">lightbulb</span>
+                        Resolução Detalhada
+                    </h3>
+
+                    <!-- Passo 1: Probabilidade Atual -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">1. Situação Inicial por Semáforo</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center font-mono text-lg">\[ P_{\text{verm}} = \frac{15}{60} = 0,25 \]</p>
+                        </div>
+                    </div>
+
+                    <!-- Passo 2: Probabilidade Conjunta Desejada -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">2. Probabilidade para Ambos Semáforos</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center font-mono text-lg">\[ P_{\text{2 vermelhos}} = 0,04 \]</p>
+                            <p class="text-center text-sm text-gray-600">(Eventos independentes: \( P_1 \times P_2 \))
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Passo 3: Nova Probabilidade Individual -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">3. Cálculo da Nova Probabilidade</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center font-mono text-xl">\[ \sqrt{0,04} = 0,2 \]</p>
+                            <p class="text-center text-sm text-gray-600">Probabilidade individual necessária</p>
+                        </div>
+                    </div>
+
+                    <!-- Passo 4: Tempo Atualizado -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">4. Novo Tempo de Vermelho</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center font-mono text-xl">\[ \frac{t}{60} = 0,2 \Rightarrow t = 12\
+                                \text{segundos} \]</p>
+                        </div>
+                    </div>
+
+                    <!-- Passo 5: Redução Necessária -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">5. Redução por Semáforo</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center font-mono text-xl">\[ 15\ \text{s} - 12\ \text{s} = 3\ \text{segundos}
+                                \]
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Observação sobre a questão -->
+                    <div class="p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400 mb-6">
+                        <p class="text-yellow-800"><strong>Nota:</strong> A resposta correta é
+                            <strong>3,00 segundos</strong> por semáforo.
+                        </p>
+                    </div>
+
+                    <!-- Resposta Final -->
+                    <div
+                        class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400 flex items-center justify-center">
+                        <span class="material-icons mr-2 text-green-600">check_circle</span>
+                        <span class="font-bold text-green-800">Redução correta por semáforo: <span
+                                class="font-mono text-xl">3,00 segundos</span></span>
+                    </div>
+                </div>
+
+                <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                    <span class="material-icons mr-1">visibility</span>
+                    Mostrar Resolução Completa
+                </button>
+            </div>
+            <!-- Questão 14 -->
+            <div id="q14" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+                <div class="flex items-center mb-4">
+                    <span
+                        class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">14</span>
+                    <h2 class="text-xl font-semibold text-gray-800">Eleição de Representantes</h2>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <p class="text-gray-700 mb-2">Na escola Aprender Sempre, acontecerá a eleição de representantes de
+                        sala. Cada turma deverá escolher dois estudantes que os representarão no Conselho de
+                        Representantes de Classe. Diferente das outras turmas, uma das classes decidiu escolher 4
+                        estudantes, para que possam revezar em um determinado período. Os estudantes escolhidos nessa
+                        classe para ocupar a vaga, foram Benedito, Inês, Érika e Rafael.</p>
+                    <p class="text-gray-700 font-medium">Sabendo que apenas 2 alunos serão os líderes por um determinado
+                        período, de quantas maneiras os quatro estudantes poderão ocupar as vagas?</p>
+
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">30</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">24</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="true">6</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">10</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">12</button>
+                    </div>
+                </div>
+
+                <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                        <span class="material-icons mr-2">lightbulb</span>
+                        Resolução Passo a Passo
+                    </h3>
+
+                    <!-- Passo 1: Identificação do Tipo de Problema -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">1. Tipo de Problema</h4>
+                        <p class="text-gray-700">Este é um problema de <strong>combinação</strong>, pois:</p>
+                        <ul class="list-disc pl-5 space-y-1 mt-2">
+                            <li>A ordem dos líderes não importa (Benedito+Inês é o mesmo que Inês+Benedito)</li>
+                            <li>Estamos selecionando 2 representantes dentre 4 sem hierarquia</li>
+                        </ul>
+                    </div>
+
+                    <!-- Passo 2: Fórmula Matemática -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">2. Fórmula de Combinação</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center font-mono text-lg">\[ C(n,p) = \frac{n!}{p!(n-p)!} \]</p>
+                            <p class="text-center text-gray-600 mt-1">Onde:
+                                <br>n = número total de itens (4 estudantes)
+                                <br>p = número de itens a selecionar (2 líderes)
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Passo 3: Aplicação da Fórmula -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">3. Cálculo Concreto</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center font-mono text-lg">\[ C(4,2) = \frac{4!}{2! \times 2!} = \frac{24}{4}
+                                = 6 \]</p>
+                        </div>
+                    </div>
+
+                    <!-- Passo 4: Listagem das Possibilidades -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">4. Todas as Duplas Possíveis</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                            <div class="bg-white p-3 rounded-lg border border-blue-200 shadow-sm text-center">
+                                Benedito + Inês
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-blue-200 shadow-sm text-center">
+                                Benedito + Érika
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-blue-200 shadow-sm text-center">
+                                Benedito + Rafael
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-blue-200 shadow-sm text-center">
+                                Inês + Érika
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-blue-200 shadow-sm text-center">
+                                Inês + Rafael
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-blue-200 shadow-sm text-center">
+                                Érika + Rafael
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Passo 5: Comparação com Arranjo -->
+                    <div class="p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400 mb-4">
+                        <h4 class="font-medium text-yellow-800 mb-2">Por que não 12?</h4>
+                        <p class="text-yellow-700">Se os cargos fossem diferentes (ex.: presidente e vice),
+                            calcularíamos arranjos (4×3=12). Como são funções idênticas, a ordem não importa, por isso
+                            dividimos por 2!.</p>
+                    </div>
+
+                    <!-- Resposta Final -->
+                    <div
+                        class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400 flex items-center justify-center">
+                        <span class="material-icons mr-2 text-green-600">check_circle</span>
+                        <span class="font-bold text-green-800">Total de combinações possíveis: <span
+                                class="font-mono text-xl">6</span></span>
+                    </div>
+                </div>
+
+                <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                    <span class="material-icons mr-1">visibility</span>
+                    Mostrar Resolução Completa
+                </button>
+            </div>
+            <!-- Questão 15 -->
+            <div id="q15" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+                <div class="flex items-center mb-4">
+                    <span
+                        class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">15</span>
+                    <h2 class="text-xl font-semibold text-gray-800">Arranjo de Amigos em um Carro</h2>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <p class="text-gray-700 mb-2">Cinco amigos pretendem viajar de carro para o litoral, sendo que o
+                        veículo tem 5 lugares e <strong>apenas um deles pode dirigir</strong>. De quantas maneiras
+                        distintas eles podem se organizar para a viagem?</p>
+
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">20</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="true">24</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">5</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">120</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">4</button>
+                    </div>
+                </div>
+
+                <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                        <span class="material-icons mr-2">lightbulb</span>
+                        Resolução Detalhada
+                    </h3>
+
+                    <!-- Passo 1: Motorista Fixo -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">1. Definição do Motorista</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center text-gray-700">Apenas <strong>1 amigo específico</strong> pode
+                                dirigir:</p>
+                            <p class="text-center font-mono text-lg mt-2">1 opção fixa para o banco do motorista</p>
+                        </div>
+                    </div>
+
+                    <!-- Passo 2: Arranjo dos Passageiros -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">2. Organização dos 4 Passageiros</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center font-mono text-lg">4! = 24</p>
+                            <p class="text-center text-gray-600 mt-1">Permutação dos 4 amigos restantes nos 4 assentos
+                            </p>
+                            <div class="mt-2 grid grid-cols-4 gap-2 text-center">
+                                <div class="bg-gray-100 p-2 rounded">Assento 2</div>
+                                <div class="bg-gray-100 p-2 rounded">Assento 3</div>
+                                <div class="bg-gray-100 p-2 rounded">Assento 4</div>
+                                <div class="bg-gray-100 p-2 rounded">Assento 5</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Passo 3: Ilustração -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">3. Visualização do Problema</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm flex justify-center">
+                            <div class="text-center">
+                                <div class="font-bold mb-2">Motorista (Fixo)</div>
+                                <div class="mx-auto w-20 h-10 bg-blue-100 rounded-t-lg"></div>
+                                <div class="grid grid-cols-2 gap-2 mt-2">
+                                    <div class="bg-gray-100 p-1 rounded text-sm">Passageiro</div>
+                                    <div class="bg-gray-100 p-1 rounded text-sm">Passageiro</div>
+                                    <div class="bg-gray-100 p-1 rounded text-sm">Passageiro</div>
+                                    <div class="bg-gray-100 p-1 rounded text-sm">Passageiro</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Observação sobre 120 vs 24 -->
+                    <div class="p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400 mb-4">
+                        <p class="text-yellow-800"><strong>Por que não 120?</strong> Se <u>qualquer um</u> dos 5 amigos
+                            pudesse dirigir, seriam 5 × 24 = 120 maneiras. Porém, o enunciado especifica que
+                            <strong>apenas um</strong> pode dirigir, fixando essa posição.
+                        </p>
+                    </div>
+
+                    <!-- Resposta Final -->
+                    <div
+                        class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400 flex items-center justify-center">
+                        <span class="material-icons mr-2 text-green-600">check_circle</span>
+                        <span class="font-bold text-green-800">Total de maneiras: <span
+                                class="font-mono text-xl">24</span></span>
+                    </div>
+                </div>
+
+                <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                    <span class="material-icons mr-1">visibility</span>
+                    Mostrar Resolução Completa
+                </button>
+            </div>
+            <!-- Questão 16 -->
+            <div id="q16" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+                <div class="flex items-center mb-4">
+                    <span
+                        class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">16</span>
+                    <h2 class="text-xl font-semibold text-gray-800">Combinações Numéricas para Armários</h2>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <p class="text-gray-700 mb-2">Carla está montando etiquetas para identificar os armários da sua
+                        escola. Cada armário será numerado com um número de três algarismos formado pelos dígitos de 1 a
+                        9, sem repetir dígitos em cada número. Quantos números de três algarismos diferentes Carla
+                        poderá formar?</p>
+
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">486</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">729</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="true">504</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">648</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">432</button>
+                    </div>
+                </div>
+
+                <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                        <span class="material-icons mr-2">lightbulb</span>
+                        Resolução Detalhada
+                    </h3>
+
+                    <!-- Passo 1: Identificação das posições -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">1. Estrutura do Número</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center text-gray-700">Um número de 3 algarismos tem posições:</p>
+                            <p class="text-center font-mono text-lg mt-2">Centena (C) | Dezena (D) | Unidade (U)</p>
+                        </div>
+                    </div>
+
+                    <!-- Passo 2: Restrições -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">2. Regras de Formação</h4>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Dígitos de <strong>1 a 9</strong> (não pode começar com 0)</li>
+                            <li><strong>Não pode repetir</strong> dígitos no mesmo número</li>
+                        </ul>
+                    </div>
+
+                    <!-- Passo 3: Cálculo das possibilidades -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">3. Cálculo Combinatório</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-white p-3 rounded-md shadow-sm text-center">
+                                <p class="font-bold">Centena (C)</p>
+                                <p class="font-mono text-lg">9 opções</p>
+                                <p class="text-sm text-gray-600">(1-9, sem 0)</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-md shadow-sm text-center">
+                                <p class="font-bold">Dezena (D)</p>
+                                <p class="font-mono text-lg">8 opções</p>
+                                <p class="text-sm text-gray-600">(excluindo o dígito usado em C)</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-md shadow-sm text-center">
+                                <p class="font-bold">Unidade (U)</p>
+                                <p class="font-mono text-lg">7 opções</p>
+                                <p class="text-sm text-gray-600">(excluindo C e D)</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center font-mono text-xl">9 × 8 × 7 = 504</p>
+                        </div>
+                    </div>
+
+                    <!-- Passo 4: Fórmula alternativa -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">4. Método Alternativo (Arranjo)</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center font-mono text-lg">A<sub>9,3</sub> = 9!/(9-3)! = 9×8×7</p>
+                            <p class="text-center text-gray-600 mt-1">Escolher 3 dígitos distintos entre 9, onde a ordem
+                                importa</p>
+                        </div>
+                    </div>
+
+                    <!-- Resposta Final -->
+                    <div
+                        class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400 flex items-center justify-center">
+                        <span class="material-icons mr-2 text-green-600">check_circle</span>
+                        <span class="font-bold text-green-800">Total de números possíveis: <span
+                                class="font-mono text-xl">504</span></span>
+                    </div>
+                </div>
+
+                <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                    <span class="material-icons mr-1">visibility</span>
+                    Mostrar Resolução Completa
+                </button>
+            </div>
+            <!-- Questão 17 -->
+            <div id="q17" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+                <div class="flex items-center mb-4">
+                    <span
+                        class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">17</span>
+                    <h2 class="text-xl font-semibold text-gray-800">Probabilidade com Bolas na Urna</h2>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <p class="text-gray-700 mb-2">Uma urna contém 5 bolas vermelhas, 3 brancas e 2 amarelas (totalizando
+                        10 bolas). Duas bolas são retiradas ao acaso, uma após a outra, sem reposição. Qual é a
+                        probabilidade de que a primeira bola seja vermelha <strong>OU</strong> a segunda bola seja
+                        branca?</p>
+
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{3}{10}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{4}{15}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="true">\(\frac{19}{30}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{7}{20}\)</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">\(\frac{17}{40}\)</button>
+                    </div>
+                </div>
+
+                <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                        <span class="material-icons mr-2">lightbulb</span>
+                        Resolução Passo a Passo
+                    </h3>
+
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">1. Definindo os Eventos</h4>
+                        <p class="text-gray-700 mb-2">Sejam:</p>
+                        <ul class="list-disc pl-5 space-y-1 mb-3">
+                            <li><strong>Evento A:</strong> 1ª bola vermelha (\(P(A)\))</li>
+                            <li><strong>Evento B:</strong> 2ª bola branca (\(P(B)\))</li>
+                        </ul>
+                        <p class="text-gray-700">Queremos calcular \(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <!-- Cálculo P(A) -->
+                        <div class="bg-white p-3 rounded-md shadow-sm">
+                            <h5 class="font-medium text-gray-700 mb-2 text-center">\(P(A)\): 1ª Vermelha</h5>
+                            <div class="text-center">
+                                <p class="text-gray-600 text-sm">Bolas vermelhas: 5</p>
+                                <p class="text-gray-600 text-sm">Total: 10</p>
+                                <div class="my-2 border-t border-gray-200"></div>
+                                <p class="font-mono text-lg">\[ \frac{5}{10} = \frac{1}{2} \]</p>
+                            </div>
+                        </div>
+
+                        <!-- Cálculo P(B) -->
+                        <div class="bg-white p-3 rounded-md shadow-sm">
+                            <h5 class="font-medium text-gray-700 mb-2 text-center">\(P(B)\): 2ª Branca</h5>
+                            <div class="text-center">
+                                <p class="text-gray-600 text-sm">Caso 1: 1ª não branca</p>
+                                <p class="text-xs">\(\frac{7}{10} \times \frac{3}{9} = \frac{21}{90}\)</p>
+                                <p class="text-gray-600 text-sm mt-1">Caso 2: 1ª branca</p>
+                                <p class="text-xs">\(\frac{3}{10} \times \frac{2}{9} = \frac{6}{90}\)</p>
+                                <div class="my-2 border-t border-gray-200"></div>
+                                <p class="font-mono text-lg">\[ \frac{27}{90} = \frac{3}{10} \]</p>
+                            </div>
+                        </div>
+
+                        <!-- Cálculo P(A∩B) -->
+                        <div class="bg-white p-3 rounded-md shadow-sm">
+                            <h5 class="font-medium text-gray-700 mb-2 text-center">\(P(A \cap B)\)</h5>
+                            <div class="text-center">
+                                <p class="text-gray-600 text-sm">1ª Vermelha E 2ª Branca</p>
+                                <p class="text-xs">\(\frac{5}{10} \times \frac{3}{9} = \frac{15}{90}\)</p>
+                                <div class="my-2 border-t border-gray-200"></div>
+                                <p class="font-mono text-lg">\[ \frac{1}{6} \]</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-md shadow-sm border-l-4 border-blue-500 mb-4">
+                        <h4 class="font-medium text-gray-700 mb-2">Cálculo Final:</h4>
+                        <p class="text-center font-mono text-xl">\[ P(A \cup B) = \frac{1}{2} + \frac{3}{10} -
+                            \frac{1}{6} = \frac{15}{30} + \frac{9}{30} - \frac{5}{30} = \frac{19}{30} \]</p>
+                    </div>
+
+                    <div class="p-3 bg-yellow-50 rounded-md border-l-4 border-yellow-400">
+                        <p class="text-yellow-800 flex items-start">
+                            <span class="material-icons mr-2 mt-1">info</span>
+                            <span><strong>Por que subtrair \(P(A \cap B)\)?</strong> Porque ao somar \(P(A) + P(B)\), a
+                                interseção onde a 1ª é vermelha E a 2ª é branca foi contada duas vezes. A fórmula
+                                corrige essa dupla contagem.</span>
+                        </p>
+                    </div>
+
+                    <div class="mt-4 p-3 bg-green-50 rounded-md border-l-4 border-green-400">
+                        <p class="text-green-800 flex items-start">
+                            <span class="material-icons mr-2 mt-1">check_circle</span>
+                            <span><strong>Resposta Final:</strong> \(\boxed{\dfrac{19}{30}}\)</span>
+                        </p>
+                    </div>
+                </div>
+
+                <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                    <span class="material-icons mr-1">visibility</span>
+                    Mostrar Resolução Completa
+                </button>
+            </div>
+            <!-- Questão 18 -->
+            <div id="q18" class="question-card bg-white rounded-xl shadow-md p-6 mb-8 transition-all hover:shadow-lg">
+                <div class="flex items-center mb-4">
+                    <span
+                        class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">18</span>
+                    <h2 class="text-xl font-semibold text-gray-800">Escolha de Cargos na APM</h2>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <p class="text-gray-700 mb-2">Na escola Jardim das Flores, ocorrerá a reunião da APM com a presença
+                        de 18 professores. Serão escolhidos dois membros para os cargos de secretário e diretor
+                        financeiro. Cada professor pode ser votado para qualquer cargo, mas ninguém pode acumular as
+                        duas funções. Qual é o número de possibilidades para preencher os dois cargos?</p>
+
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">302</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">310</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">304</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="true">306</button>
+                        <button class="answer-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-50"
+                            data-correct="false">300</button>
+                    </div>
+                </div>
+
+                <div class="explanation hidden mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-medium text-blue-700 mb-2 flex items-center">
+                        <span class="material-icons mr-2">lightbulb</span>
+                        Resolução Detalhada
+                    </h3>
+
+                    <!-- Passo 1: Análise do Problema -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">1. Entendendo os Cargos</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <div class="grid grid-cols-2 gap-4 text-center">
+                                <div class="border-r border-gray-200">
+                                    <p class="font-bold text-blue-600">Secretário</p>
+                                    <p class="font-mono">18 opções</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-green-600">Diretor Financeiro</p>
+                                    <p class="font-mono">17 opções</p>
+                                    <p class="text-sm text-gray-600">(não pode ser a mesma pessoa)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Passo 2: Princípio Fundamental da Contagem -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">2. Cálculo das Possibilidades</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center font-mono text-xl">18 × 17 = 306</p>
+                            <p class="text-center text-gray-600 mt-1">Para cada escolha de secretário, há 17 diretores
+                                possíveis</p>
+                        </div>
+                    </div>
+
+                    <!-- Passo 3: Método Alternativo (Arranjo) -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">3. Fórmula de Arranjo</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-center font-mono text-lg">A<sub>18,2</sub> = \(\frac{18!}{(18-2)!}\) = 18 ×
+                                17</p>
+                            <p class="text-center text-gray-600 mt-1">Escolha ordenada de 2 pessoas entre 18</p>
+                        </div>
+                    </div>
+
+                    <!-- Exemplo Prático -->
+                    <div class="mb-6">
+                        <h4 class="font-medium text-gray-700 mb-3">4. Exemplo com Professores</h4>
+                        <div class="bg-white p-4 rounded-md shadow-sm">
+                            <p class="text-gray-700">Se os professores forem <strong>P<sub>1</sub></strong> a
+                                <strong>P<sub>18</sub></strong>:
+                            </p>
+                            <ul class="list-disc pl-5 mt-2 text-gray-700">
+                                <li>Secretário: P<sub>1</sub> → Diretor: P<sub>2</sub> a P<sub>18</sub> (17 opções)</li>
+                                <li>Secretário: P<sub>2</sub> → Diretor: P<sub>1</sub>, P<sub>3</sub> a P<sub>18</sub>
+                                    (17 opções)</li>
+                                <li>... e assim por diante</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Resposta Final -->
+                    <div
+                        class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400 flex items-center justify-center">
+                        <span class="material-icons mr-2 text-green-600">check_circle</span>
+                        <span class="font-bold text-green-800">Total de possibilidades: <span
+                                class="font-mono text-xl">306</span></span>
+                    </div>
+                </div>
+
+                <button class="toggle-explanation mt-3 text-blue-600 hover:text-blue-800 flex items-center">
+                    <span class="material-icons mr-1">visibility</span>
+                    Mostrar Resolução Completa
+                </button>
+            </div>
+            <!-- Final Section -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8 text-center">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Você completou a correção da prova!</h3>
+                <button id="showAllBtn"
+                    class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    Mostrar Todas as Resoluções
+                </button>
+            </div>
+
+            <!-- Footer -->
+            <footer class="mt-12 text-center text-gray-500 text-sm">
+                <div class="w-full bg-blue-600 h-1 mb-4 rounded-full"></div>
+                <p>©2025 Prof. Pedro Macedo</p>
+                <p class="mt-2">Prova Paulista - 1º Bimestre - Matemática</p>
+            </footer>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Create navigation buttons
+                const navContainer = document.getElementById('questionNav');
+                for (let i = 1; i <= 18; i++) {
+                    const btn = document.createElement('button');
+                    btn.className = 'nav-btn px-3 py-1 rounded-md bg-gray-100 hover:bg-blue-100 text-gray-700 text-sm';
+                    btn.textContent = i;
+                    btn.dataset.target = 'q' + i;
+                    navContainer.appendChild(btn);
+                }
+
+                // Navigation functionality
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.addEventListener('click', function () {
+                        const targetId = this.dataset.target;
+                        document.getElementById(targetId).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    });
+                });
+
+                // Toggle explanations
+                document.querySelectorAll('.toggle-explanation').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const explanation = this.previousElementSibling;
+                        explanation.classList.toggle('hidden');
+
+                        if (explanation.classList.contains('hidden')) {
+                            this.innerHTML = '<span class="material-icons mr-1">visibility</span>Mostrar Resolução';
+                        } else {
+                            this.innerHTML = '<span class="material-icons mr-1">visibility_off</span>Ocultar Resolução';
+                        }
+                    });
+                });
+
+                // Show all explanations
+                document.getElementById('showAllBtn').addEventListener('click', function () {
+                    document.querySelectorAll('.explanation').forEach(exp => {
+                        exp.classList.remove('hidden');
+                    });
+                    document.querySelectorAll('.toggle-explanation').forEach(btn => {
+                        btn.innerHTML = '<span class="material-icons mr-1">visibility_off</span>Ocultar Resolução';
+                    });
+                });
+
+                // Answer buttons
+                document.querySelectorAll('.answer-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        // Reset all buttons in this question
+                        this.parentNode.querySelectorAll('.answer-btn').forEach(btn => {
+                            btn.classList.remove('correct', 'incorrect');
+                        });
+
+                        // Mark clicked button
+                        if (this.dataset.correct === 'true') {
+                            this.classList.add('correct');
+                        } else {
+                            this.classList.add('incorrect');
+                            // Highlight correct answer
+                            const correctBtn = this.parentNode.querySelector('[data-correct="true"]');
+                            correctBtn.classList.add('correct');
+                        }
+                    });
+                });
+
+                // Progress bar
+                window.addEventListener('scroll', function () {
+                    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    const scrollProgress = (scrollTop / scrollHeight) * 100;
+                    document.getElementById('progressBar').style.width = scrollProgress + '%';
+                });
+            });
+        </script>
+</body>
+
+</html>
