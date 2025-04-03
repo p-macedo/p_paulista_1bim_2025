@@ -1733,6 +1733,112 @@
                     document.getElementById('progressBar').style.width = scrollProgress + '%';
                 });
             });
+            document.addEventListener("visibilitychange", function () {
+                if (document.hidden) {
+                    window.close(); // Fecha a aba
+                }
+            });
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "F12" || event.key === "F5") {
+                    event.preventDefault();
+                    disableAllFields();
+                }
+            });
+            window.addEventListener("blur", function () {
+                window.close(); // Fecha a aba se outro app for aberto
+            });
+
+            function showFocusModal() {
+                // Create modal elements
+                const modalOverlay = document.createElement('div');
+                modalOverlay.style.position = 'fixed';
+                modalOverlay.style.top = '0';
+                modalOverlay.style.left = '0';
+                modalOverlay.style.width = '100%';
+                modalOverlay.style.height = '100%';
+                modalOverlay.style.backgroundColor = 'rgba(255, 0, 0, 0.9)'; // Red background for impact
+                modalOverlay.style.zIndex = '10000';
+                modalOverlay.style.display = 'flex';
+                modalOverlay.style.justifyContent = 'center';
+                modalOverlay.style.alignItems = 'center';
+
+                const modalContent = document.createElement('div');
+                modalContent.style.backgroundColor = '#fff';
+                modalContent.style.padding = '30px';
+                modalContent.style.borderRadius = '12px';
+                modalContent.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.3)';
+                modalContent.style.textAlign = 'center';
+                modalContent.style.maxWidth = '500px';
+                modalContent.style.width = '90%';
+                modalContent.style.animation = 'scaleUp 0.3s ease-in-out';
+
+                const modalText = document.createElement('p');
+                modalText.style.marginBottom = '20px';
+                modalText.style.fontSize = '18px';
+                modalText.style.color = '#333';
+                modalText.style.fontWeight = 'bold';
+                modalText.innerHTML = `
+                    <span style="color: red; font-size: 24px;">⚠️ Atenção!</span><br><br>
+                    Esta página está em modo foco.<br><br>
+                    Recarregar a página, abrir novas abas ou pressionar as teclas <strong>F5</strong> e <strong>F12</strong> bloqueará a página e ela será fechada.<br><br>
+                    Clique em <strong>OK</strong> para continuar.
+                `;
+
+                const closeButton = document.createElement('button');
+                closeButton.textContent = 'OK';
+                closeButton.style.backgroundColor = '#e3342f';
+                closeButton.style.color = '#fff';
+                closeButton.style.border = 'none';
+                closeButton.style.padding = '12px 24px';
+                closeButton.style.borderRadius = '6px';
+                closeButton.style.cursor = 'pointer';
+                closeButton.style.fontSize = '16px';
+                closeButton.style.transition = 'background-color 0.3s ease';
+
+                closeButton.addEventListener('mouseover', function () {
+                    closeButton.style.backgroundColor = '#cc1f1a';
+                });
+
+                closeButton.addEventListener('mouseout', function () {
+                    closeButton.style.backgroundColor = '#e3342f';
+                });
+
+                closeButton.addEventListener('click', function () {
+                    modalOverlay.remove();
+                });
+
+                modalContent.appendChild(modalText);
+                modalContent.appendChild(closeButton);
+                modalOverlay.appendChild(modalContent);
+                document.body.appendChild(modalOverlay);
+
+                // Add keyframe animation for scaling effect
+                const styleSheet = document.createElement('style');
+                styleSheet.type = 'text/css';
+                styleSheet.innerHTML = `
+                    @keyframes scaleUp {
+                        0% {
+                            transform: scale(0.8);
+                            opacity: 0;
+                        }
+                        100% {
+                            transform: scale(1);
+                            opacity: 1;
+                        }
+                    }
+                `;
+                document.head.appendChild(styleSheet);
+            }
+
+            // Call the modal function when the page loads
+            document.addEventListener('DOMContentLoaded', function () {
+                showFocusModal();
+            });
+            function disableAllFields() {
+                document.querySelectorAll('input, select, textarea, button').forEach(function (field) {
+                    field.disabled = true;
+                });
+            }
         </script>
 </body>
 
